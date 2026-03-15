@@ -1,0 +1,7 @@
+.book-image img{
+  width: 300px;
+  height: auto;
+} 
+.card{
+    background-color: rgb(182, 5, 5);
+}

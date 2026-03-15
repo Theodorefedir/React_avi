@@ -1,0 +1,42 @@
+{
+  "books": [
+    {
+      "id": "4",
+      "name": "You Don't Know JS Yet",
+      "price": 25,
+      "numOfPages": 320,
+      "image": "book4.png"
+    },
+    {
+      "id": "5",
+      "name": "Eloquent JavaScript",
+      "price": 27,
+      "numOfPages": 472,
+      "image": "book5.png"
+    },
+    {
+      "id": "6",
+      "name": "Design Patterns",
+      "price": 35,
+      "numOfPages": 395,
+      "image": "book1.png"
+    },
+    {
+      "id": "8",
+      "name": "Introduction to Algorithms",
+      "price": 50,
+      "numOfPages": 1312,
+      "image": "book4.png"
+    },
+    {
+      "id": "6485",
+      "name": "name",
+      "authorName": "aut",
+      "genre": "horor",
+      "numOfPages": 380,
+      "price": 34,
+      "image": "book5.png"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
