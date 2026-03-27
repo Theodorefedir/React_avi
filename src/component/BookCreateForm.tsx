@@ -9,7 +9,7 @@ export function BookCreateForm({ onBookCreated }: { onBookCreated: (book: BookTy
         numOfPages: 0,
         price: 0,
         image: "",   
-      });
+      }); 
 
 
     const handleClick = async () => {

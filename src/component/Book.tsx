@@ -1,7 +1,8 @@
-import "./Book.css";
+// import "./Book.css";
 import style from "./Book.module.css";
 import type { BookType } from "../types/BookType";
 import { useState } from "react";
+import { NavLink } from "react-router";
 
 type BookProps = BookType & {
     onDelete?: (id: number) => void;
@@ -14,15 +15,11 @@ export function Book({name, authorName, genre, numOfPages, reviews, image, onDel
     const handleDelete = () => {
         if (onDelete && id) {
             onDelete(id);
-        }
+        } 
     };
-    return <div className="card" style={{ 
-            width: '300px',
-            borderRadius: '8px',
-            margin: '10px'
-        }}> 
+    return <div className = {style.card}> 
            <p>{counter}</p> 
-            Book {name}, by {authorName}. Is {genre} book with {numOfPages} pages. <br />
+            Book <NavLink to={`/book/${id}`}>{name}</NavLink>, by {authorName}. Is {genre} book with {numOfPages} pages. <br />
             Reviews: <br />
             
             {reviews ? reviews.map((review, index) => (
@@ -33,7 +30,7 @@ export function Book({name, authorName, genre, numOfPages, reviews, image, onDel
                 </div>
             )): ""}
             <div className="book-image">
-                {image ? <img src={`images/${image}`} alt={name} /> : null}
+                {image ? <img src={`/images/${image}`} alt={name} /> : null}
             </div>
             <button onClick={()=>{
                 setCounter((count)=>count+1);

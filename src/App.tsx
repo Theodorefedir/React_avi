@@ -8,9 +8,13 @@ import type { BookType } from "./types/BookType";
 // import { Value } from "./component/Value";
 // import type { ValueType } from "./types/ValueType";
 import { BookCreateForm } from "./component/BookCreateForm";
+import { useNavigate } from "react-router";
 
 function App() {
   const [books, setBooks] = useState <BookType[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchType, setSearchType] = useState<"name" | "pages">("name");
+  const navigate = useNavigate()
   const [book, setBook] = useState <BookType>({
     name: "",
     authorName: "",
@@ -30,6 +34,20 @@ const handleDeleteBook = async (id: number) => {
     alert("Книга удалена");
   } else {
     alert("Ошибка при удалении");
+  }
+}; 
+
+const handleSearch = () => {
+    if (searchType === "name") {
+      navigate(`/book?name=${encodeURIComponent(searchTerm)}`);
+    } else {
+      navigate(`/book?numOfPages=${searchTerm}`);
+    }
+  };
+
+const handleKeyPress = (e: React.KeyboardEvent) => {
+  if (e.key === "Enter") {
+    handleSearch();
   }
 };
 
@@ -65,6 +83,31 @@ const handleDeleteBook = async (id: number) => {
 
  
   return <>
+  {/*так тут короче будет строка поиска */}
+
+  <div>
+        <select 
+          value={searchType} 
+          onChange={(e) => setSearchType(e.target.value as "name" | "pages")}
+        >
+          <option value="name">Name</option>
+          <option value="pages">Number of pages</option>
+        </select>
+
+        <input
+          type={searchType === "pages" ? "number" : "text"}
+          placeholder={searchType === "name" ? "Enter name" : "Enter number"}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
+        />
+
+        <button
+          onClick={handleSearch}>
+          Search
+        </button>
+      </div>
+
 
   <BookCreateForm onBookCreated = {handleBookCreated}/>   
   {/* <Author Name="Name" Surname="Surname"/>
